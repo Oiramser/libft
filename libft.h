@@ -6,7 +6,7 @@
 /*   By: marmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 14:55:37 by marmarti          #+#    #+#             */
-/*   Updated: 2024/05/01 22:04:34 by marmarti         ###   ########.fr       */
+/*   Updated: 2024/05/02 19:59:03 by marmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,10 @@ int		ft_memcmp(const void *p1, const void *p2, size_t num);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 int		ft_atoi(const char *str);
 void	*ft_calloc(size_t num_items, size_t size);
+char	*ft_strdup(const char *str);
+char	*ft_substr(const char *s, unsigned int start, size_t len);
+char	*ft_strjoin(char const *s1, char const *s2);
+char	*ft_strmapi(char const *s, char (*f)(unsigned int, char));
+void	ft_striteri(char *str, void (*f)(unsigned int, char*));
 
 #endif
