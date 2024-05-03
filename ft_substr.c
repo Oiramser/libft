@@ -6,7 +6,7 @@
 /*   By: marmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:43:36 by marmarti          #+#    #+#             */
-/*   Updated: 2024/05/02 19:47:36 by marmarti         ###   ########.fr       */
+/*   Updated: 2024/05/03 12:32:51 by marmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 {
 	size_t		i;
 	size_t		j;
-	char	*res;
+	char		*res;
 
 	i = 0;
 	j = 0;
