@@ -6,35 +6,41 @@
 /*   By: marmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/03 13:28:06 by marmarti          #+#    #+#             */
-/*   Updated: 2024/05/03 16:27:46 by marmarti         ###   ########.fr       */
+/*   Updated: 2024/05/04 15:59:22 by marmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int	ft_numWord(const char *c, int d)
+static int	ft_num_word(const char *c, int d)
 {
 	int	cont;
+	int	delimit;
 
 	cont = 0;
+	delimit = 0;
 	while (*c)
 	{
-		while (*c != d || *(c + 1) == '\0')
+		if (*c == d)
+		{
+			delimit = 0;
+		}
+		else if (!delimit)
 		{
 			cont++;
-			c++;
+			delimit = 1;
 		}
 		c++;
 	}
 	return (cont);
 }
 
-static int	ft_numLet(const char *c, int d)
+static int	ft_num_let(const char *c, int d)
 {
-	int cont;
+	int	cont;
 
 	cont = 0;
-	while(*c == d || *(c + 1) == '\0')
+	while (*c && *c != d)
 	{
 		cont++;
 		c++;
@@ -42,34 +48,42 @@ static int	ft_numLet(const char *c, int d)
 	return (cont);
 }
 
-char **ft_split(char const *s, char c)
+static void	*ft_free_memory(char **str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		free(str[i++]);
+	free(str);
+	return (0);
+}
+
+char	**ft_split(char const *s, char c)
 {
 	int		cont;
 	int		i;
 	char	**res;
-	const char	*inicio;
 
-	cont = ft_numWord(s, c);
+	cont = ft_num_word(s, c);
 	i = 0;
-	res = (char **)malloc((cont + 1) * sizeof(char *));
-	inicio = s;
-	if (res == NULL)
+	if (!s)
 		return (0);
+	res = (char **)malloc(sizeof(char *) * (cont + 1));
+	if (!res)
+		return (0);
+	res[cont] = NULL;
 	while (*s)
 	{
-		if(*s == c || *(s + 1) == '\0')
+		if (*s != c)
 		{
-			res[i] = (char *)malloc((s - inicio + 1), sizeof(char));
-			if (res == NULL)
-				return (0);
-			ft_strlcpy(res[i], inicio, ft_numLet(s, c));
-			while (*(s + 1) == c)
-				s++;
-			inicio = s + 1;
-			i++;
+			res[i] = ft_substr(s, 0, ft_num_let(s, c));
+			if (!res[i++])
+				return (ft_free_memory(res));
+			s += ft_num_let(s, c);
 		}
-		s++;
+		else
+			s++;
 	}
-	res[cont] = NULL;
 	return (res);
 }

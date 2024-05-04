@@ -1,8 +1,7 @@
-LIB = ar rcs
 
 NAME = libft.a
 
-MY_SOURCES = ft_isalpha.c\
+SRCS = ft_isalpha.c\
 	ft_isdigit.c\
 	ft_isalnum.c\
 	ft_isascii.c\
@@ -36,26 +35,39 @@ MY_SOURCES = ft_isalpha.c\
 	ft_putstr_fd.c\
 	ft_putendl_fd.c\
 	ft_putnbr_fd.c
-    
-MY_OBJECTS = $(MY_SOURCES:.c=.o)
+
+BONUS = ft_lstnew.c
+
+INCLUDE = libft.h
 
 CC = gcc
 
+RM = rm -f
+
 CFLAGS += -Wall -Wextra -Werror -I.
 
-$(NAME): $(MY_OBJECTS) libft.h
-	$(LIB) $(NAME) $(MY_OBJECTS)
+%.o: %.c $(INCLUDE)
+	@$(CC) $(CFLAGS) -c $< -o $@
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c -o $@ $<
+OBJS = ${SRCS:.c=.o}
+BONUS_OBJECTS = ${BONUS:.c=.o}
+
+$(NAME): $(OBJS) ${INCLUDE}
+	@ar -rsc $(NAME) $(OBJS)
+
+bonus: ${OBJS} ${BONUS_OBJECTS} ${INCLUDE}
+	@ar -rsc $(NAME)  $^
+	@touch $@
 
 all: $(NAME)
 
 clean:
-	rm -f $(MY_OBJECTS)
+	@${RM} ${OBJS} $(MY_OBJECTS) ${BONUS_OBJECTS}
 
 fclean: clean
-	rm -f $(NAME)
+	@${RM} ${OBJS} ${BONUS_OBJECTS}
+	@${RM} $(NAME)
+	@${RM} bonus
     
 re:     fclean all
 

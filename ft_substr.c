@@ -6,7 +6,7 @@
 /*   By: marmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/02 18:43:36 by marmarti          #+#    #+#             */
-/*   Updated: 2024/05/03 12:32:51 by marmarti         ###   ########.fr       */
+/*   Updated: 2024/05/04 15:57:36 by marmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,13 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 
 	i = 0;
 	j = 0;
-	if (!s || start >= ft_strlen(s))
+	if (!s || start > ft_strlen(s))
 		return (ft_strdup(""));
 	else if (len > ft_strlen(s) - start)
 		len = ft_strlen(s) - start;
 	res = (char *)malloc(len + 1);
-	if (res == NULL)
-		return (0);
+	if (res == 0)
+		return (NULL);
 	while (s[i])
 	{
 		if (i >= start && j < len)
@@ -45,7 +45,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 int main ()
 {
     char str[] = "Hola mundo que tal";
-    char *sub = ft_substr(str, 6, 5);
+    char *sub = ft_substr(str, 0, 5);
 
     printf("%s\n", sub);
     return 0;

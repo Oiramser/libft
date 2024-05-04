@@ -6,7 +6,7 @@
 /*   By: marmarti <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/01 14:55:37 by marmarti          #+#    #+#             */
-/*   Updated: 2024/05/03 15:57:33 by marmarti         ###   ########.fr       */
+/*   Updated: 2024/05/04 17:45:35 by marmarti         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,13 @@
 # include <limits.h>
 # include <stdlib.h>
 
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}	t_list;
+
+//primera parte
 int		ft_isalpha(int c);
 int		ft_isdigit(int c);
 int		ft_isalnum(int c);
@@ -50,4 +57,7 @@ void	ft_putchar_fd(char c, int fd);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putendl_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
+//bonus
+t_list	*ft_listnew(void *content);
+
 #endif
