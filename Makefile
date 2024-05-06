@@ -36,7 +36,13 @@ SRCS = ft_isalpha.c\
 	ft_putendl_fd.c\
 	ft_putnbr_fd.c
 
-BONUS = ft_lstnew.c
+BONUS = ft_lstnew_bonus.c\
+	ft_lstadd_front_bonus.c\
+	ft_lstsize_bonus.c\
+	ft_lstlast_bonus.c\
+	ft_lstadd_back_bonus.c\
+	ft_lstdelone_bonus.c\
+	ft_lstclear_bonus.c
 
 INCLUDE = libft.h
 
@@ -44,7 +50,7 @@ CC = gcc
 
 RM = rm -f
 
-CFLAGS += -Wall -Wextra -Werror -I.
+CFLAGS = -Wall -Wextra -Werror
 
 %.o: %.c $(INCLUDE)
 	@$(CC) $(CFLAGS) -c $< -o $@
